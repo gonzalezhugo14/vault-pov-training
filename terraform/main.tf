@@ -31,6 +31,7 @@ resource "aws_instance" "vault_training_instance" {
   associate_public_ip_address = "true"
   security_groups             = ["${aws_security_group.vault_training.name}"]
   key_name                    = "${aws_key_pair.training.key_name}"
+  security_groups = ["${aws_security_group.vault_training.id}"]
 
   tags {
     Name = "HashiCorp_Training_August_2018_${var.my_name}_${random_id.training.hex}"
