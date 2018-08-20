@@ -63,5 +63,5 @@ output "AWS Key Name" {
 }
 
 output "vpc_id"{
-    value = "${module.vpc.vpc_manuel_training.vpc_id}"
+    value = "${module.vpc.vpc_id}"
 }
