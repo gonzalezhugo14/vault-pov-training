@@ -1,7 +1,6 @@
 resource "aws_security_group" "vault_training" {
   name = "training_${var.my_name}_${random_id.training.hex}"
   description = "Very insecure Vault and Consul SG - for training purposes only"
-  #vpc_id      = "${var.vpc_id}"
   vpc_id = "${module.vpc.vpc_id}"
 
   tags {

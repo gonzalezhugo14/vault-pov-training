@@ -2,11 +2,14 @@ provider "aws" {
   region = "${var.region}"
 }
 
+
+
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
-  name = "vpc_manuel_training"
+  name = "vpc_${var.my_name}_training"
   cidr = "10.0.0.0/16"
-  azs = ["us-east-1a"]
+  //azs = ["us-east-1a"]
+  azs = ["${element(data.aws_availability_zones.available.names,0)}"]
   private_subnets = ["10.0.1.0/24"]
   public_subnets  = ["10.0.101.0/24"]
 
@@ -14,7 +17,7 @@ module "vpc" {
   tags = {
     Terraform = "true"
     Environment = "test"
-    owner = "manuel.portillo"
+    owner = "${var.my_name}"
   }
 }
 
