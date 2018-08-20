@@ -4,22 +4,7 @@ provider "aws" {
 
 
 
-module "vpc" {
-  source = "terraform-aws-modules/vpc/aws"
-  name = "vpc_${var.my_name}_training"
-  cidr = "10.0.0.0/16"
-  //azs = ["us-east-1a"]
-  azs = ["${element(data.aws_availability_zones.available.names,0)}"]
-  private_subnets = ["10.0.1.0/24"]
-  public_subnets  = ["10.0.101.0/24"]
 
-  enable_nat_gateway = true
-  tags = {
-    Terraform = "true"
-    Environment = "test"
-    owner = "${var.my_name}"
-  }
-}
 
 
 resource "aws_key_pair" "training" {
