@@ -32,6 +32,7 @@ resource "aws_instance" "vault_training_instance" {
   security_groups             = ["${aws_security_group.vault_training.name}"]
   key_name                    = "${aws_key_pair.training.key_name}"
   security_groups = ["${aws_security_group.vault_training.id}"]
+  subnet_id = "${element(module.vpc.public_subnets,0)}"
 
   tags {
     Name = "HashiCorp_Training_August_2018_${var.my_name}_${random_id.training.hex}"
